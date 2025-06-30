@@ -1,6 +1,5 @@
 <?php
-// Calcula o número total de itens no carrinho
-// A lógica do carrinho ainda será implementada, por agora fica a 0.
+// Calculate the total number of items in the cart
 $total_itens_carrinho = 0;
 if (!empty($_SESSION['carrinho'])) {
     foreach ($_SESSION['carrinho'] as $item) {
@@ -18,11 +17,11 @@ if (!empty($_SESSION['carrinho'])) {
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Font Awesome para Ícones -->
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Folha de Estilo Personalizada -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Custom Stylesheet -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 <body>
 

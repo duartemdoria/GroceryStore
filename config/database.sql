@@ -1,4 +1,4 @@
--- Base de dados: `mercearia_db`
+-- Database: `mercearia_db`
 --
 CREATE DATABASE IF NOT EXISTS `mercearia_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `mercearia_db`;
@@ -6,21 +6,21 @@ USE `mercearia_db`;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtos`
--- Guarda todos os produtos disponíveis na loja.
+-- Structure of the table `produtos`
+-- Stores all the products available in the store.
 --
 CREATE TABLE `produtos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
   `descricao` text DEFAULT NULL,
-  `imagem` varchar(255) DEFAULT 'default.jpg', -- Imagem do produto
-  `quantidade` int(11) NOT NULL DEFAULT 0, -- Quantidade em stock
-  `preco` decimal(10,2) NOT NULL, -- Preço por unidade
+  `imagem` varchar(255) DEFAULT 'default.jpg',
+  `quantidade` int(11) NOT NULL DEFAULT 0,
+  `preco` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Inserir dados de exemplo na tabela `produtos`
+-- Insert sample data into the `produtos` table
 --
 INSERT INTO `produtos` (`nome`, `descricao`, `imagem`, `quantidade`, `preco`) VALUES
 ('Maçã Fuji', 'Maçãs frescas e crocantes, ideais para um lanche saudável.', 'maca_fuji.jpg', 100, '1.99'),
@@ -34,8 +34,8 @@ INSERT INTO `produtos` (`nome`, `descricao`, `imagem`, `quantidade`, `preco`) VA
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `utilizadores`
--- Armazena as credenciais do administrador da loja.
+-- Structure of the table `utilizadores`
+-- Stores the credentials of the store administrator.
 --
 CREATE TABLE `utilizadores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -46,19 +46,19 @@ CREATE TABLE `utilizadores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Inserir dados do administrador
--- NOTA: A palavra-passe 'admin123' está aqui como exemplo.
--- No código PHP, vamos usar password_hash() para a guardar de forma segura.
--- O hash para 'admin123' é: '$2y$10$E/g5V.y0jC4Qx2jJ.fJ8iO0.I.3g.U/D5f1i.o8c.z8k.z8k.z8k.'
+-- Insert administrator data
+-- NOTE: The password 'admin123' is provided here as an example.
+-- In the PHP code, we will use password_hash() to store it securely.
+-- The hash for 'admin123' is: '$2y$10$BM0ZHIdafwaOlXqZLQlI.u2K6PBfFBb4a0ZxKRmKA/iLXBhC66V1W'
 --
 INSERT INTO `utilizadores` (`nome_utilizador`, `palavra_passe`) VALUES
-('admin', '$2y$10$9.QnLgGubGNAvFkI8dGzT.crqYJ2iA4L6h/y0aC8f.K3E.t7uG5aK'); -- A senha é 'admin123'
+('admin', '$2y$10$BM0ZHIdafwaOlXqZLQlI.u2K6PBfFBb4a0ZxKRmKA/iLXBhC66V1W');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `encomendas`
--- Guarda a informação de cada encomenda realizada.
+-- Structure of the table `encomendas`
+-- Stores the information of each order placed.
 --
 CREATE TABLE `encomendas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -73,8 +73,8 @@ CREATE TABLE `encomendas` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `detalhes_encomenda`
--- Tabela de ligação que detalha os produtos de cada encomenda.
+-- Structure of the table `detalhes_encomenda`
+-- Linking table that details the products of each order.
 --
 CREATE TABLE `detalhes_encomenda` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -89,17 +89,17 @@ CREATE TABLE `detalhes_encomenda` (
 
 
 --
--- Constraints para as tabelas
+-- Constraints for the tables
 --
 
 --
--- Adicionar Foreign Key à tabela `detalhes_encomenda` para ligar a `encomendas`
+-- Add Foreign Key to the table `detalhes_encomenda` to link to `encomendas`
 --
 ALTER TABLE `detalhes_encomenda`
   ADD CONSTRAINT `fk_encomenda` FOREIGN KEY (`id_encomenda`) REFERENCES `encomendas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Adicionar Foreign Key à tabela `detalhes_encomenda` para ligar a `produtos`
+-- Add Foreign Key to the table `detalhes_encomenda` to link to `produtos`
 --
 ALTER TABLE `detalhes_encomenda`
   ADD CONSTRAINT `fk_produto` FOREIGN KEY (`id_produto`) REFERENCES `produtos` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

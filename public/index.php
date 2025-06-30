@@ -1,22 +1,15 @@
 <?php
-// Inicia a sessão para podermos usar variáveis de sessão (para o carrinho, por exemplo)
 session_start();
 
-// Inclui o ficheiro de configuração da base de dados
 require_once '../config/database.php';
-
-// Inclui o cabeçalho da página
 require_once '../templates/header.php';
 
-// Vai buscar todos os produtos à base de dados que tenham stock
+// Fetch all products from the database that are in stock
 try {
-    // Prepara a consulta SQL para selecionar produtos com quantidade > 0
     $stmt = $pdo->prepare("SELECT * FROM produtos WHERE quantidade > 0 ORDER BY nome ASC");
     $stmt->execute();
-    // Vai buscar todos os produtos como um array associativo
     $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    // Em caso de erro na base de dados, mostra uma mensagem genérica
     die("Não foi possível ir buscar os produtos: " . $e->getMessage());
 }
 ?>
@@ -29,7 +22,7 @@ try {
         </div>
     </div>
 
-    <!-- Secção de Produtos -->
+    <!-- Products Section -->
     <div class="row">
         <?php if (empty($produtos)): ?>
             <div class="col-12">
@@ -41,7 +34,7 @@ try {
             <?php foreach ($produtos as $produto): ?>
                 <div class="col-12 col-md-6 col-lg-4 mb-4">
                     <div class="card h-100 shadow-sm">
-                        <!-- Imagem do Produto -->
+                        <!-- Product Image -->
                         <img src="../assets/images/<?php echo htmlspecialchars($produto['imagem']); ?>" 
                              class="card-img-top" 
                              alt="<?php echo htmlspecialchars($produto['nome']); ?>"
@@ -51,13 +44,13 @@ try {
                             <h5 class="card-title"><?php echo htmlspecialchars($produto['nome']); ?></h5>
                             <p class="card-text text-muted flex-grow-1"><?php echo htmlspecialchars($produto['descricao']); ?></p>
                             
-                            <!-- Informação de Preço e Stock -->
+                            <!-- Price and Stock Information -->
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <p class="card-text fs-5 fw-bold mb-0">€<?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
                                 <span class="badge bg-light text-dark">Stock: <?php echo $produto['quantidade']; ?></span>
                             </div>
 
-                            <!-- Formulário para Adicionar ao Carrinho -->
+                            <!-- Form to Add to Cart -->
                             <form action="carrinho.php" method="POST">
                                 <input type="hidden" name="id_produto" value="<?php echo $produto['id']; ?>">
                                 <div class="input-group">
@@ -76,6 +69,5 @@ try {
 </main>
 
 <?php
-// Inclui o rodapé da página
 require_once '../templates/footer.php';
 ?>
