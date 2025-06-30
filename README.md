@@ -35,7 +35,7 @@ Follow these steps to set up the local development environment.
 ### 1. Set up the Database
 -   Start the Apache and MySQL services in your XAMPP/MAMP control panel.
 -   Open phpMyAdmin and create a new database named `mercearia_db`.
--   Import the `ecom.sql` file (located in the project root) into the `mercearia_db` database.
+-   Import the `database.sql` file (located in the config folder) into the `mercearia_db` database.
 
 ### 2. Configure the Project
 -   Clone or download this repository into the `htdocs` (for XAMPP) or `htdocs` (for MAMP) folder.
