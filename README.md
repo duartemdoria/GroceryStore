@@ -1,71 +1,72 @@
-# Mercearia Online
+# Online Grocery Store
 
-Este repositório contém o código-fonte de uma aplicação web para uma mercearia online. A aplicação permite que os clientes vejam produtos, os adicionem a um carrinho e finalizem a compra. Inclui também um painel de administração para o dono da loja gerir produtos e consultar encomendas.
+This repository contains the source code for a web application for an online grocery store. The application allows customers to view products, add them to a cart, and complete a purchase. It also includes an administration panel for the store owner to manage products and view orders.
 
-## ✨ Funcionalidades Principais
+## ✨ Key Features
 
-### 🛍️ Área do Cliente
-- **Visualização de Produtos:** Página inicial com uma grelha de todos os produtos disponíveis em stock.
-- **Carrinho de Compras Dinâmico:** Adicione, remova e veja produtos no carrinho, com o total a ser atualizado em tempo real (via sessão PHP).
-- **Checkout Seguro:** Formulário de finalização de compra com validações de dados (idade mínima de 18 anos, campos obrigatórios) e proteção contra XSS.
-- **Atualização de Stock:** O stock dos produtos é atualizado automaticamente após cada compra bem-sucedida.
+### 🛍️ Customer Area
+- **Product Showcase:** A homepage with a grid of all available products in stock.
+- **Dynamic Shopping Cart:** Add, remove, and view products in the cart, with the total updated in real-time (via PHP session).
+- **Secure Checkout:** A checkout form with data validation (minimum age of 18, required fields) and protection against XSS.
+- **Stock Updates:** Product stock is automatically updated after each successful purchase.
 
-### ⚙️ Painel de Administração
-- **Login Seguro:** Página de login exclusiva para o administrador com verificação de palavra-passe através de hash.
-- **Dashboard Central:** Painel de controlo com um resumo das últimas encomendas e uma lista de todos os produtos.
-- **Gestão de Produtos Completa:** Adicione novos produtos e edite os existentes (nome, descrição, preço, stock e imagem).
-- **Gestão de Encomendas:** Visualize uma lista de todas as encomendas e consulte os detalhes de cada uma (dados do cliente e produtos comprados).
+### ⚙️ Admin Panel
+- **Secure Login:** An exclusive login page for the administrator with password verification using hashing.
+- **Central Dashboard:** A control panel with a summary of the latest orders and a list of all products.
+- **Complete Product Management:** Add new products and edit existing ones (name, description, price, stock, and image).
+- **Order Management:** View a list of all orders and check the details of each one (customer data and purchased products).
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Technologies Used
 * **Back-end:** PHP
-* **Base de Dados:** MySQL
+* **Database:** MySQL
 * **Front-end:** HTML5, CSS3, Bootstrap 5
-* **Servidor Web:** Apache (normalmente via XAMPP ou MAMP)
+* **Web Server:** Apache (typically via XAMPP or MAMP)
 
 ---
 
-## 🚀 Como Executar o Projeto
+## 🚀 How to Run the Project
 
-Siga estes passos para configurar o ambiente de desenvolvimento local.
+Follow these steps to set up the local development environment.
 
-### Pré-requisitos
-* Um ambiente de servidor local como [XAMPP](https://www.apachefriends.org/index.html) ou MAMP.
-* Um gestor de base de dados como o phpMyAdmin (incluído no XAMPP).
+### Prerequisites
+* A local server environment like [XAMPP](https://www.apachefriends.org/index.html) or MAMP.
+* A database manager like phpMyAdmin (included with XAMPP).
 
-### 1. Configurar a Base de Dados
--   Inicie os serviços Apache e MySQL no seu painel de controlo XAMPP/MAMP.
--   Abra o phpMyAdmin e crie uma nova base de dados chamada `mercearia_db`.
--   Importe o ficheiro `ecom.sql` (que se encontra na raiz do projeto) para dentro da base de dados `mercearia_db`.
+### 1. Set up the Database
+-   Start the Apache and MySQL services in your XAMPP/MAMP control panel.
+-   Open phpMyAdmin and create a new database named `mercearia_db`.
+-   Import the `ecom.sql` file (located in the project root) into the `mercearia_db` database.
 
-### 2. Configurar o Projeto
--   Clone ou faça o download deste repositório para a pasta `htdocs` (no XAMPP) ou `htdocs` (no MAMP).
--   Abra o ficheiro `/config/database.php`.
--   Atualize as credenciais da base de dados de acordo com a sua configuração local (normalmente, o utilizador é `root` e a palavra-passe é vazia por defeito).
+### 2. Configure the Project
+-   Clone or download this repository into the `htdocs` (for XAMPP) or `htdocs` (for MAMP) folder.
+-   Open the `/config/database.php` file.
+-   Update the database credentials according to your local setup (usually, the user is `root` and the password is
+    empty by default).
 ```php
 $db_host = 'localhost';
 $db_name = 'mercearia_db';
-$db_user = 'root'; // O seu utilizador
-$db_pass = '';     // A sua palavra-passe
+$db_user = 'root'; // Your username
+$db_pass = '';     // Your password
 ```
 
-### 3. Aceder à Aplicação
--   **Loja (Página Pública):** Abra o seu navegador e aceda a `http://localhost/mercearia-online/public/`.
--   **Painel de Administração:** Aceda a `http://localhost/mercearia-online/admin/`.
-    -   **Utilizador:** `admin`
-    -   **Palavra-passe:** `admin123`
+### 3. Access the Application
+-   **Store (Public Page):** Open your browser and navigate to `http://localhost/mercearia-online/public/`.
+-   **Admin Panel:** Navigate to `http://localhost/mercearia-online/admin/`.
+    -   **Username:** `admin`
+    -   **Password:** `admin123`
 
 ---
 
-## 📁 Estrutura de Pastas
+## 📁 Folder Structure
 
-O projeto está organizado de forma modular para separar as responsabilidades:
+The project is organized in a modular way to separate concerns:
 
 ```
 /
-|-- /admin/             # Ficheiros do painel de administração
-|-- /assets/            # Imagens, CSS, JS estáticos
-|-- /config/            # Ficheiros de configuração (ex: base de dados)
-|-- /public/            # Área pública do site, acessível aos clientes
-|-- /templates/         # Partes reutilizáveis de HTML (cabeçalho, rodapé)
-|-- ecom.sql            # Ficheiro de setup da base de dados
-|-- README.md           # Este ficheiro
+|-- /admin/             # Files for the admin panel
+|-- /assets/            # Static assets like images, CSS, JS
+|-- /config/            # Configuration files (e.g., database)
+|-- /public/            # Public area of the site, accessible to customers
+|-- /templates/         # Reusable HTML parts (header, footer)
+|-- ecom.sql            # Database setup file
+|-- README.md           # This file
